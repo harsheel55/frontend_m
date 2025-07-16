@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "website",
+=======
+  "name": "my-app",
+>>>>>>> 4b8a4726d4f313eb634b53688c3d5096bab56eff
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,8 +15,15 @@
     "@types/node": "^16.18.126",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
+<<<<<<< HEAD
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+=======
+    "lucide-react": "^0.525.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-icons": "^4.10.1",
+>>>>>>> 4b8a4726d4f313eb634b53688c3d5096bab56eff
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
@@ -40,5 +51,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+<<<<<<< HEAD
+=======
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "3.4"
+>>>>>>> 4b8a4726d4f313eb634b53688c3d5096bab56eff
   }
 }

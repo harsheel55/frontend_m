@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
@@ -19,6 +20,29 @@ function App() {
           Learn React
         </a>
       </header>
+=======
+import Navbar from './components/Navbar';
+import IndustriesSection from './components/IndustriesSection';
+import CategoriesSection from './components/CategoriesSection';
+import ServicesSection from './components/ServicesSection';
+import CaseStudySection from './components/CaseStudySection';
+import MagikStories from './components/MagikStories';
+import ProductShowcase from './components/ProductShowcase';
+import Footer from './components/Footer';
+
+function App() {
+  return (
+    <div className="relative">
+      <Navbar />
+      {/* Other components */}
+      <IndustriesSection />
+      <CategoriesSection />
+      <ServicesSection />
+      <CaseStudySection />
+      <MagikStories />
+      <ProductShowcase />
+      <Footer />
+>>>>>>> 4b8a4726d4f313eb634b53688c3d5096bab56eff
     </div>
   );
 }
