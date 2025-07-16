@@ -21,6 +21,13 @@ import {
   MdAccountBalance,
 } from "react-icons/md";
 
+const GoogleFonts = () => (
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+);
+
 export default function Footer() {
   const quickLinks = [
     { name: "Home", href: "#" },
@@ -111,194 +118,244 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-gray-50 text-black px-4 sm:px-6 py-8 sm:py-12">
-      <div className="max-w-7xl mx-auto">
-        {/* Main Footer Content */}
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
-          {/* Left Section - Brand Info */}
-          <div className="lg:w-1/3">
-            <div className="flex items-center gap-2 sm:gap-3 mb-6">
-              {/* Logo placeholder - using green square for demo */}
-              <img
-                src={logo}
-                alt="Logo"
-                className="w-[50px] h-[50px] rounded-[1px] object-contain"
-              />
+    <>
+      <GoogleFonts />
+      <footer
+        className="bg-gray-50 text-black px-4 sm:px-6 py-8 sm:py-12"
+        style={{ fontFamily: "Inter, system-ui, -apple-system, sans-serif" }}
+      >
+        <div className="max-w-7xl mx-auto">
+          {/* Main Footer Content */}
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+            {/* Left Section - Brand Info */}
+            <div className="lg:w-1/3">
+              <div className="flex items-center gap-2 sm:gap-3 mb-6">
+                {/* Logo placeholder - using green square for demo */}
+                <img
+                  src={logo}
+                  alt="Logo"
+                  className="w-[50px] h-[50px] rounded-[1px] object-contain"
+                />
 
-              {/* Divider Line */}
-              <div className="w-[1px] h-[40px] sm:h-[50px] bg-[#656565]" />
+                {/* Divider Line */}
+                <div className="w-[1px] h-[40px] sm:h-[50px] bg-[#656565]" />
 
-              {/* Tagline */}
-              <div className="leading-[130%] font-semibold text-[#656565] text-[14px] sm:text-[16px] font-sans">
-                <div>A STONE CARE</div>
-                <div>SOLUTION</div>
-              </div>
-            </div>
-
-            {/* Description */}
-            <p className="text-gray-600 text-sm mb-6 leading-relaxed">
-              Trusted By National Heritage Sites, Top Builders & Global Brands
-              For Over 20 Years
-            </p>
-
-            {/* Contact Info */}
-            <div className="space-y-2 mb-6">
-              <div className="flex items-center gap-2">
-                <FaPhone className="w-4 h-4 text-green-600" />
-                <span className="text-sm font-medium">+91 9909923232</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <FaEnvelope className="w-4 h-4 text-green-600" />
-                <span className="text-sm">rahi@marbelmagik.com</span>
-              </div>
-            </div>
-
-            {/* Social Media */}
-            <div className="flex gap-3">
-              <a
-                href="https://www.facebook.com/MarbleMagikCorporation"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 bg-green-600 rounded flex items-center justify-center hover:bg-green-700 transition-colors"
-              >
-                <FaFacebookF className="w-4 h-4 text-white" />
-              </a>
-              <a
-                href="https://www.instagram.com/marblemagik"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 bg-green-600 rounded flex items-center justify-center hover:bg-green-700 transition-colors"
-              >
-                <FaInstagram className="w-4 h-4 text-white" />
-              </a>
-              <a
-                href="https://www.linkedin.com/company/marble-magik-corporations/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 bg-green-600 rounded flex items-center justify-center hover:bg-green-700 transition-colors"
-              >
-                <FaLinkedinIn className="w-4 h-4 text-white" />
-              </a>
-              <a
-                href="https://www.youtube.com/@marblemagikcorporation3188"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 bg-green-600 rounded flex items-center justify-center hover:bg-green-700 transition-colors"
-              >
-                <FaYoutube className="w-4 h-4 text-white" />
-              </a>
-            </div>
-          </div>
-
-          {/* Middle Section - Links */}
-          <div className="lg:w-1/3">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-              {/* Quick Links */}
-              <div>
-                <h3 className="text-green-700 font-bold text-lg mb-4">
-                  QUICK LINKS
-                </h3>
-                <ul className="space-y-2">
-                  {quickLinks.map((link, idx) => (
-                    <li key={idx}>
-                      <a
-                        href={link.href}
-                        className="text-gray-700 hover:text-green-600 transition-colors text-sm"
-                      >
-                        {link.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Categories */}
-              <div>
-                <h3 className="text-green-700 font-bold text-lg mb-4">
-                  CATEGORIES
-                </h3>
-                <ul className="space-y-2">
-                  {categories.map((category, idx) => (
-                    <li key={idx}>
-                      <a
-                        href={category.href}
-                        className="text-gray-700 hover:text-green-600 transition-colors text-sm"
-                      >
-                        {category.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Services */}
-              <div>
-                <h3 className="text-green-700 font-bold text-lg mb-4">
-                  Services
-                </h3>
-                <ul className="space-y-2">
-                  {services.map((service, idx) => (
-                    <li key={idx}>
-                      <a
-                        href={service.href}
-                        className="text-gray-700 hover:text-green-600 transition-colors text-sm"
-                      >
-                        {service.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Our Story */}
-              <div>
-                <h3 className="text-green-700 font-bold text-lg mb-4">
-                  Our Story
-                </h3>
-                <ul className="space-y-2">
-                  {ourStory.map((story, idx) => (
-                    <li key={idx}>
-                      <a
-                        href={story.href}
-                        className="text-gray-700 hover:text-green-600 transition-colors text-sm"
-                      >
-                        {story.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Section - Address */}
-          <div className="lg:w-1/3">
-            <h3 className="text-green-700 font-bold text-xl mb-6">ADDRESS</h3>
-            <div className="space-y-6">
-              {offices.map((office, idx) => (
-                <div key={idx} className="flex gap-4">
-                  <div className="flex-shrink-0">{office.icon}</div>
-                  <div>
-                    <h4 className="font-bold text-gray-800 mb-2">
-                      {office.title}
-                    </h4>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      {office.address}
-                    </p>
-                  </div>
+                {/* Tagline */}
+                <div className="leading-[130%] font-semibold text-[#656565] text-[14px] sm:text-[16px] font-sans">
+                  <div>A STONE CARE</div>
+                  <div>SOLUTION</div>
                 </div>
-              ))}
+              </div>
+
+              {/* Description */}
+              <p
+                className="text-gray-600 text-sm mb-6 leading-relaxed font-medium"
+                style={{ fontFamily: "Inter, sans-serif" }}
+              >
+                Trusted By National Heritage Sites, Top Builders & Global Brands
+                For Over 20 Years Sites, Top Builders & Global Brands For Over
+                20 Years
+              </p>
+
+              {/* Contact Info */}
+              <div className="space-y-2 mb-6">
+                <div className="flex items-center gap-2">
+                  <FaPhone className="w-4 h-4 text-green-600" />
+                  <span
+                    className="text-sm font-semibold text-gray-800"
+                    style={{ fontFamily: "Inter, sans-serif" }}
+                  >
+                    +91 9909923232
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <FaEnvelope className="w-4 h-4 text-green-600" />
+                  <span
+                    className="text-sm font-medium text-gray-700"
+                    style={{ fontFamily: "Inter, sans-serif" }}
+                  >
+                    rahi@marbelmagik.com
+                  </span>
+                </div>
+              </div>
+
+              {/* Social Media */}
+              <div className="flex gap-3">
+                <a
+                  href="https://www.facebook.com/MarbleMagikCorporation"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 bg-green-600 rounded flex items-center justify-center hover:bg-green-700 transition-colors"
+                >
+                  <FaFacebookF className="w-4 h-4 text-white" />
+                </a>
+                <a
+                  href="https://www.instagram.com/marblemagik"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 bg-green-600 rounded flex items-center justify-center hover:bg-green-700 transition-colors"
+                >
+                  <FaInstagram className="w-4 h-4 text-white" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/marble-magik-corporations/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 bg-green-600 rounded flex items-center justify-center hover:bg-green-700 transition-colors"
+                >
+                  <FaLinkedinIn className="w-4 h-4 text-white" />
+                </a>
+                <a
+                  href="https://www.youtube.com/@marblemagikcorporation3188"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 bg-green-600 rounded flex items-center justify-center hover:bg-green-700 transition-colors"
+                >
+                  <FaYoutube className="w-4 h-4 text-white" />
+                </a>
+              </div>
+            </div>
+
+            {/* Middle Section - Links */}
+            <div className="lg:w-1/3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                {/* Quick Links */}
+                <div>
+                  <h3
+                    className="text-green-700 font-semibold text-lg sm:text-xl mb-4 tracking-wide"
+                    style={{ fontFamily: "Poppins, sans-serif" }}
+                  >
+                    QUICK LINKS
+                  </h3>
+                  <ul className="space-y-2">
+                    {quickLinks.map((link, idx) => (
+                      <li key={idx}>
+                        <a
+                          href={link.href}
+                          className="text-gray-700 hover:text-green-600 transition-colors text-sm"
+                          style={{ fontFamily: "Inter, sans-serif" }}
+                        >
+                          {link.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Categories */}
+                <div>
+                  <h3
+                    className="text-green-700 font-semibold text-lg sm:text-xl mb-4 tracking-wide"
+                    style={{ fontFamily: "Poppins, sans-serif" }}
+                  >
+                    CATEGORIES
+                  </h3>
+                  <ul className="space-y-2">
+                    {categories.map((category, idx) => (
+                      <li key={idx}>
+                        <a
+                          href={category.href}
+                          className="text-gray-700 hover:text-green-600 transition-colors text-sm font-medium"
+                          style={{ fontFamily: "Inter, sans-serif" }}
+                        >
+                          {category.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Services */}
+                <div>
+                  <h3
+                    className="text-green-700 font-semibold text-lg sm:text-xl mb-4 tracking-wide"
+                    style={{ fontFamily: "Poppins, sans-serif" }}
+                  >
+                    Services
+                  </h3>
+                  <ul className="space-y-2">
+                    {services.map((service, idx) => (
+                      <li key={idx}>
+                        <a
+                          href={service.href}
+                          className="text-gray-700 hover:text-green-600 transition-colors text-sm font-medium"
+                          style={{ fontFamily: "Inter, sans-serif" }}
+                        >
+                          {service.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Our Story */}
+                <div>
+                  <h3
+                    className="text-green-700 font-semibold text-lg sm:text-xl mb-4 tracking-wide"
+                    style={{ fontFamily: "Poppins, sans-serif" }}
+                  >
+                    Our Story
+                  </h3>
+                  <ul className="space-y-2">
+                    {ourStory.map((story, idx) => (
+                      <li key={idx}>
+                        <a
+                          href={story.href}
+                          className="text-gray-700 hover:text-green-600 transition-colors text-sm"
+                          style={{ fontFamily: "Inter, sans-serif" }}
+                        >
+                          {story.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Section - Address */}
+            <div className="lg:w-1/3">
+              <h3
+                className="text-green-700 font-semibold text-lg sm:text-xl mb-4 tracking-wide"
+                style={{ fontFamily: "Poppins, sans-serif" }}
+              >
+                ADDRESS
+              </h3>
+              <div className="space-y-6">
+                {offices.map((office, idx) => (
+                  <div key={idx} className="flex gap-4">
+                    <div className="flex-shrink-0">{office.icon}</div>
+                    <div>
+                      <h4
+                        className="font-bold text-gray-800 mb-2"
+                        style={{ fontFamily: "Poppins, sans-serif" }}
+                      >
+                        {office.title}
+                      </h4>
+                      <p
+                        className="text-gray-600 text-sm leading-relaxed"
+                        style={{ fontFamily: "Inter, sans-serif" }}
+                      >
+                        {office.address}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Footer Bottom */}
-        <div className="mt-12 pt-6 border-t border-gray-300 text-center">
-          <p className="text-gray-600 text-sm">
-            © 2024 Marbel Magik. All rights reserved.
-          </p>
+          {/* Footer Bottom */}
+          <div className="mt-12 pt-6 border-t border-gray-300 text-center">
+            <p
+              className="text-gray-600 text-sm"
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
+              © 2024 Marbel Magik. All rights reserved.
+            </p>
+          </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   );
 }

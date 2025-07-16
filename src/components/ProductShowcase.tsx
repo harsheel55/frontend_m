@@ -14,13 +14,13 @@ import tube from '../assets/tube.png';
 
 // 2. Best Practice: Move component data into an array for easy mapping
 const products = [
-  { image: smallCan, label: 'Repair & Water Proofing' },
-  { image: tinBox, label: 'Repair & Water Proofing' },
-  { image: can, label: 'Repair & Water Proofing' },
-  { image: bucket, label: 'POLISH, DENSIFIER SEALER & EPOXY' },
-  { image: pouch, label: 'Lube & 2K grey' },
-  { image: bag, label: 'Powder Adhesive', rotate: 'rotate-[-15deg]' },
-  { image: tube, label: 'Remover & Past' },
+  { image: smallCan, label: '' },
+  { image: tinBox, label: '' },
+  { image: can, label: '' },
+  { image: bucket, label: '' },
+  { image: pouch, label: '' },
+  { image: bag, label: '', rotate: 'rotate-[-15deg]' },
+  { image: tube, label: '' },
 ];
 
 // 3. Define the animation variants
