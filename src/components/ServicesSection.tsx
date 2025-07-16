@@ -1,106 +1,152 @@
-import React from 'react';
-// 1. Import 'motion' AND the 'Variants' type from Framer Motion
-import { motion, Variants } from 'framer-motion';
+// src/components/ServicesWeProvide.tsx
 
-// (Optional but good practice) Define a type for a single service
+import React, { useCallback, useEffect, useState } from 'react';
+import { motion, Variants } from 'framer-motion';
+import useEmblaCarousel from 'embla-carousel-react';
+import type { EmblaCarouselType, EmblaOptionsType } from 'embla-carousel';
+import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
+import stoneMaintenanceImg from '../assets/stone-maintenance.jpg';
+import onsiteGuidanceImg from '../assets/on-site-guidance.jpg';
+import tileMaintenanceImg from '../assets/tile-maintenance.png';
+import expertGuidanceImg from '../assets/expert-guidance.png';
+
+
+
+// --- TYPESCRIPT INTERFACES ---
 interface Service {
+  id: number;
+  imageSrc: string;
   title: string;
-  image: string; // The result of 'require' is treated as a string by the bundler
 }
 
-const services: Service[] = [
-  {
-    title: 'Stone Maintenance',
-    image: require('../assets/stone-maintenance.jpg'),
-  },
-  {
-    title: 'On Site Guidance',
-    image: require('../assets/on-site-guidance.jpg'),
-  },
-  {
-    title: 'Tile Maintenance',
-    image: require('../assets/tile-maintenance.png'),
-  },
-  {
-    title: 'Expert Guidance',
-    image: require('../assets/expert-guidance.png'),
-  },
+// --- DATA & CONFIG ---
+const servicesData: Service[] = [
+  { id: 1, imageSrc: stoneMaintenanceImg, title: 'Stone Maintenance' },
+  { id: 2, imageSrc: onsiteGuidanceImg, title: 'On Site Guidance' },
+  { id: 3, imageSrc: tileMaintenanceImg, title: 'Tile Maintenance' },
+  { id: 4, imageSrc: expertGuidanceImg, title: 'Expert Guidance' },
+  { id: 5, imageSrc: stoneMaintenanceImg, title: 'Stone Maintenance 2' }, // Added for carousel loop demo
 ];
 
-// 2. Explicitly type the variants object with the 'Variants' type
-const containerVariants: Variants = {
+const emblaOptions: EmblaOptionsType = {
+  loop: true,
+  align: 'start',
+  slidesToScroll: 1,
+};
+
+// --- ANIMATION VARIANTS ---
+const sectionVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
       staggerChildren: 0.2,
+      delayChildren: 0.1,
     },
   },
 };
 
-// 3. Do the same for itemVariants. This is the key fix for the error.
 const itemVariants: Variants = {
-  hidden: { y: 20, opacity: 0 },
+  hidden: { y: 30, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
     transition: {
       duration: 0.6,
-      ease: 'easeOut', // TypeScript now correctly validates this string
+      ease: 'easeOut',
     },
   },
 };
 
-const ServicesSection = () => {
+// --- MAIN COMPONENT ---
+const ServicesWeProvide: React.FC = () => {
+  const [emblaRef, emblaApi] = useEmblaCarousel(emblaOptions);
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(false);
+
+  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    const onSelect = (api: EmblaCarouselType) => {
+      setCanScrollPrev(api.canScrollPrev());
+      setCanScrollNext(api.canScrollNext());
+    };
+    emblaApi.on('select', onSelect);
+    emblaApi.on('reInit', onSelect);
+    onSelect(emblaApi); // Initial check
+  }, [emblaApi]);
+
   return (
-    <section className="w-full bg-[#444444] py-12 md:py-16 lg:py-20 px-4 text-white overflow-hidden">
+    <section className="bg-[#444444] text-white py-16 sm:py-24 overflow-hidden">
       <motion.div
-        className="max-w-7xl mx-auto"
+        className="max-w-7xl mx-auto px-4"
+        variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        variants={containerVariants}
       >
-        {/* Title with responsive border */}
-        <motion.div variants={itemVariants} className="text-center mb-6 md:mb-8">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif border-2 border-white inline-block px-4 py-2 md:px-6 md:py-3">
-            Services We Provide!
-          </h2>
-        </motion.div>
-        
-        {/* Subtitle */}
+        <motion.h2
+          variants={itemVariants}
+          className="text-4xl sm:text-5xl font-serif text-center mb-4"
+        >
+          Services We Provide!
+        </motion.h2>
         <motion.p
           variants={itemVariants}
-          className="text-center text-base md:text-lg lg:text-xl xl:text-2xl mb-8 md:mb-12 lg:mb-16 font-medium px-4"
+          className="text-lg sm:text-xl text-center text-white/80 mb-12"
         >
           Beyond Products We Provide Complete Stone Care Services
         </motion.p>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10 justify-items-center">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              className="w-full max-w-[293px] h-[280px] sm:h-[320px] md:h-[350px] lg:h-[373px] rounded-[10px] bg-[#F3F4EF] relative overflow-hidden shadow-lg group"
-              variants={itemVariants}
-              whileHover={{ y: -10, scale: 1.03 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-            >
-              <img
-                src={service.image}
-                alt={service.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              
-              <div className="absolute bottom-0 w-full bg-white bg-opacity-40 backdrop-blur-sm text-black py-3 md:py-4 text-center font-bold text-lg md:text-xl lg:text-2xl capitalize">
-                {service.title}
-              </div>
-            </motion.div>
-          ))}
+        <div className="relative">
+          {/* Carousel Viewport */}
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex -ml-4">
+              {servicesData.map((service) => (
+                <motion.div
+                  key={service.id}
+                  className="flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 pl-4"
+                  variants={itemVariants}
+                >
+                  <div className="relative rounded-2xl overflow-hidden group aspect-[4/5]">
+                    <img
+                      src={service.imageSrc}
+                      alt={service.title}
+                      className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-0 left-0 w-full p-5">
+                      <h3 className="text-xl font-bold text-white">{service.title}</h3>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Navigation Buttons */}
+          <button
+            onClick={scrollPrev}
+            disabled={!canScrollPrev}
+            aria-label="Previous service"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 bg-white text-gray-800 rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition-all hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed z-10"
+          >
+            <FiArrowLeft size={24} />
+          </button>
+          <button
+            onClick={scrollNext}
+            disabled={!canScrollNext}
+            aria-label="Next service"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 bg-white text-gray-800 rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition-all hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed z-10"
+          >
+            <FiArrowRight size={24} />
+          </button>
         </div>
       </motion.div>
     </section>
   );
 };
 
-export default ServicesSection;
+export default ServicesWeProvide;
