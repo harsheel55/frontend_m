@@ -6,6 +6,12 @@ module.exports = {
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
       },
+      fontFamily: {
+        french: ['"IM FELL French Canon"', 'serif'],
+      },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
     },
   },
   plugins: [],
